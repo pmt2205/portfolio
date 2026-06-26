@@ -108,7 +108,7 @@ export const translations = {
       title: "Get In Touch",
       subtitle: "Contact Me",
       connect: "Let's connect!",
-      desc: "If you have any opportunities for a Fullstack Developer Fresher or would like to collaborate on a project, feel free to contact me via email or fill out the contact form. I will get back to you as soon as possible!",
+      desc: "If you have any opportunities for a Fullstack Developer Fresher or would like to collaborate on a project, feel free to reach out to me. I will get back to you as soon as possible!",
       labels: {
         name: "Your Name",
         email: "Your Email",
@@ -240,7 +240,7 @@ export const translations = {
       title: "Liên hệ",
       subtitle: "Kết nối với tôi",
       connect: "Cùng kết nối nhé!",
-      desc: "Nếu bạn đang có cơ hội việc làm cho Lập trình viên Fullstack Fresher hoặc muốn cùng phát triển dự án, hãy liên hệ với tôi qua email hoặc biểu mẫu liên hệ bên cạnh. Tôi sẽ phản hồi sớm nhất có thể!",
+      desc: "Nếu bạn đang có cơ hội việc làm cho Lập trình viên Fullstack Fresher hoặc muốn cùng phát triển dự án, hãy liên hệ với tôi qua các kênh kết nối bên dưới. Tôi sẽ phản hồi sớm nhất có thể!",
       labels: {
         name: "Tên của bạn",
         email: "Địa chỉ Email",

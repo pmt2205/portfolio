@@ -1,6 +1,7 @@
 "use client";
 
-import { User, GraduationCap, Code, Compass } from "lucide-react";
+import { GraduationCap, Code, Compass } from "lucide-react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "../common/Container";
 import SectionTitle from "../common/SectionTitle";
@@ -47,8 +48,17 @@ export default function AboutSection() {
               <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-indigo-500 to-cyan-500 opacity-20 dark:opacity-30 blur-lg transition duration-1000 group-hover:opacity-40 dark:group-hover:opacity-60" />
               
               <div className="relative rounded-2xl border border-slate-200 bg-white/70 dark:border-slate-800 dark:bg-slate-900/60 p-8 text-center backdrop-blur-sm shadow-xs">
-                <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500/10 to-cyan-500/10 text-slate-800 dark:text-white">
-                  <User className="h-12 w-12 text-indigo-500 dark:text-indigo-400" />
+                <div className="relative mx-auto h-28 w-28 overflow-hidden rounded-full border-2 border-indigo-500/20 dark:border-indigo-500/40 bg-gradient-to-br from-indigo-500/10 to-cyan-500/10 p-1 mb-2">
+                  <div className="relative h-full w-full overflow-hidden rounded-full">
+                    <Image
+                      src="/images/avatar.png"
+                      alt="Pham Manh Tuong Avatar"
+                      fill
+                      sizes="112px"
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-slate-900 dark:text-white">Pham Manh Tuong</h3>
                 <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">{t("about.role")}</p>
