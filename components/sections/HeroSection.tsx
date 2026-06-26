@@ -6,21 +6,18 @@ import { GithubIcon, LinkedinIcon } from "../common/Icons";
 import { motion } from "framer-motion";
 import Container from "../common/Container";
 import Button from "../ui/Button";
-
-const roles = [
-  "Fullstack Developer",
-  "React / Next.js Developer",
-  "Tech Enthusiast",
-  "Problem Solver"
-];
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function HeroSection() {
+  const { t } = useLanguage();
+  const roles = (t("hero.roles") || []) as string[];
   const [roleIndex, setRoleIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const activeRole = roles[roleIndex];
+    if (roles.length === 0) return;
+    const activeRole = roles[roleIndex] || "";
     let timer: NodeJS.Timeout;
 
     if (isDeleting) {
@@ -41,7 +38,14 @@ export default function HeroSection() {
     }
 
     return () => clearTimeout(timer);
-  }, [currentText, isDeleting, roleIndex]);
+  }, [currentText, isDeleting, roleIndex, roles]);
+
+  // Reset typewriter text if roles list changes due to language toggle
+  useEffect(() => {
+    setCurrentText("");
+    setIsDeleting(false);
+    setRoleIndex(0);
+  }, [roles]);
 
   return (
     <section
@@ -58,11 +62,11 @@ export default function HeroSection() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-4 py-1.5 backdrop-blur-sm"
+          className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/60 dark:border-slate-800 dark:bg-slate-900/60 px-4 py-1.5 backdrop-blur-sm shadow-xs"
         >
-          <Terminal className="h-4 w-4 text-cyan-400" />
-          <span className="text-xs font-semibold text-slate-300">
-            Welcome to my digital space
+          <Terminal className="h-4 w-4 text-cyan-500 dark:text-cyan-400" />
+          <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+            {t("hero.welcome")}
           </span>
         </motion.div>
 
@@ -71,10 +75,10 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl"
+          className="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-6xl md:text-7xl"
         >
-          Hi, I am <br className="sm:hidden" />
-          <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+          {t("hero.headline")} <br className="sm:hidden" />
+          <span className="bg-gradient-to-r from-indigo-600 via-purple-500 to-cyan-500 dark:from-indigo-400 dark:via-purple-400 dark:to-cyan-400 bg-clip-text text-transparent">
             Pham Manh Tuong
           </span>
         </motion.h1>
@@ -84,10 +88,10 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mt-6 h-8 text-lg font-medium text-slate-400 sm:text-xl md:text-2xl"
+          className="mx-auto mt-6 h-8 text-lg font-medium text-slate-500 dark:text-slate-400 sm:text-xl md:text-2xl"
         >
-          I am a{" "}
-          <span className="text-white font-semibold border-r-2 border-indigo-500 pr-1 animate-pulse">
+          {t("hero.imA")}
+          <span className="text-slate-900 dark:text-white font-semibold border-r-2 border-indigo-500 pr-1 animate-pulse">
             {currentText}
           </span>
         </motion.div>
@@ -97,9 +101,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mx-auto mt-6 max-w-2xl text-base text-slate-400 sm:text-lg"
+          className="mx-auto mt-6 max-w-2xl text-base text-slate-600 dark:text-slate-400 sm:text-lg"
         >
-          Passionate Fullstack Developer fresher focused on building premium, interactive, and performant web and mobile applications. Currently aiming to deliver modern user experiences.
+          {t("hero.description")}
         </motion.p>
 
         {/* CTA Buttons */}
@@ -111,19 +115,19 @@ export default function HeroSection() {
         >
           <a href="#projects">
             <Button variant="primary" className="gap-2">
-              View Projects <ArrowRight className="h-4 w-4" />
+              {t("hero.viewProjects")} <ArrowRight className="h-4 w-4" />
             </Button>
           </a>
           
           <a href="/cv/PhamManhTuong_CV_Fresher.pdf" download>
             <Button variant="outline" className="gap-2">
-              Download CV <Download className="h-4 w-4" />
+              {t("hero.downloadCv")} <Download className="h-4 w-4" />
             </Button>
           </a>
           
           <a href="#contact">
-            <Button variant="ghost" className="text-slate-300 hover:text-white">
-              Contact Me
+            <Button variant="ghost" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white">
+              {t("hero.contactMe")}
             </Button>
           </a>
         </motion.div>
@@ -133,21 +137,21 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 flex items-center justify-center gap-6 text-slate-500"
+          className="mt-16 flex items-center justify-center gap-6 text-slate-400 dark:text-slate-500"
         >
           <a
             href="https://github.com/pmt2205"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white transition-colors"
+            className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             <GithubIcon className="h-6 w-6" />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/pmt2205/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white transition-colors"
+            className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             <LinkedinIcon className="h-6 w-6" />
           </a>

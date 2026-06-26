@@ -29,7 +29,7 @@ export default function SectionTitle({ title, subtitle, className }: SectionTitl
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl"
+        className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl md:text-5xl"
       >
         {title}
       </motion.h2>
